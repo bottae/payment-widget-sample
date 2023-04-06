@@ -37,12 +37,14 @@
         }
       });
 
+      // 커스텀 결제수단을 선택했을 때 콜백을 실행합니다.
       paymentMethods.on("customPaymentMethodSelect", (paymentMethodKey) => {
         if (paymentMethodKey === "VOUCHER") {
           // 예시: 바우처를 선택했을 때 바우처 입력 폼을 노출
         }
       });
 
+      // 커스텀 결제수단을 선택 해제했을 때 콜백을 실행합니다.
       paymentMethods.on("customPaymentMethodUnselect", (paymentMethodKey) => {
         if (paymentMethodKey === "VOUCHER") {
           // 예시: 바우처 선택을 해제했을 때 바우처 입력 폼을 숨김
