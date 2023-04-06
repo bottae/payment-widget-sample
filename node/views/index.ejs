@@ -24,7 +24,30 @@
         PaymentWidget.ANONYMOUS
       );
 
-      paymentWidget.renderPaymentMethods("#payment-widget", "<%= price %>");
+      const paymentMethods = paymentWidget.renderPaymentMethods(
+        "#payment-widget",
+        "<%= price %>"
+      );
+
+      // 커스텀 결제수단을 선택한 채로 결제 버튼을 눌렀을 때(requestPayment를 호출했을 때) 콜백을 실행합니다.
+      // 토스페이먼츠 상점관리자에서 등록한 key값이 paymentMethodKey로 들어옵니다.
+      paymentMethods.on("customRequest", (paymentMethodKey) => {
+        if (paymentMethodKey === "VOUCHER") {
+          // 바우처 결제를 직접 처리
+        }
+      });
+
+      paymentMethods.on("customPaymentMethodSelect", (paymentMethodKey) => {
+        if (paymentMethodKey === "VOUCHER") {
+          // 예시: 바우처를 선택했을 때 바우처 입력 폼을 노출
+        }
+      });
+
+      paymentMethods.on("customPaymentMethodUnselect", (paymentMethodKey) => {
+        if (paymentMethodKey === "VOUCHER") {
+          // 예시: 바우처 선택을 해제했을 때 바우처 입력 폼을 숨김
+        }
+      });
 
       const button = document.getElementById("payment-button");
 
